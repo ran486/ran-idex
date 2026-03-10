@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎉</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+text-align:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+color:white;
+}
+
+.container{
+padding:20px;
+}
+
+h1{
+font-size:35px;
+}
+
+/* PHOTO SLIDER */
+
+.slider{
+max-width:350px;
+margin:auto;
+overflow:hidden;
+border-radius:15px;
+}
+
+.slides{
+display:flex;
+transition:transform 0.4s ease;
+}
+
+.slides img{
+width:100%;
+border-radius:15px;
+}
+
+/* BUTTONS */
+
+.controls{
+margin-top:10px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:white;
+color:#ff4081;
+font-size:16px;
+margin:5px;
+cursor:pointer;
+}
+
+/* VIDEO */
+
+video{
+width:90%;
+max-width:400px;
+border-radius:15px;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎂 HAPPY BIRTHDAY LIMEY🎉</h1>
+
+<p>your birthday is a celebration of everything you've become and you've become extraordinary! every day with you is a gift and today I just want to remind you how special you are🎂🤍🫶🏼</p>
+<p>love uuuuuuuuu 3000🤍🫶🏼</p>
+
+<!-- PHOTO SLIDER -->
+
+<div class="slider">
+
+<div class="slides" id="slides">
+
+<!-- CHANGE THESE TO YOUR PHOTOS -->
+
+<img src="Little.jpg">
+<img src="With flower.jpg">
+<img src="M&R.jpg">
+
+</div>
+
+</div>
+
+<div class="controls">
+<button onclick="next()">Touch here limey</button>
+</div>
+
+<!-- VIDEO SECTION -->
+
+<h2> Keep Going neak khu pet</h2>
+
+<video controls>
+<source src="IMG_9499.mp4" type="video/mp4">
+</video>
+
+<audio id="partySound" src="birthday.mp3"></audio>
+
+<br>
+
+<button onclick="celebrate()">Cheerss Limey Cheerss</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+let index = 0;
+const slides = document.getElementById("slides");
+const total = slides.children.length;
+
+function showSlide(){
+slides.style.transform = "translateX(" + (-index * 100) + "%)";
+}
+
+function next(){
+index++;
+if(index >= total){index = 0;}
+showSlide();
+}
+
+function prev(){
+index--;
+if(index < 0){index = total - 1;}
+showSlide();
+}
+
+/* SWIPE FOR MOBILE */
+
+let startX = 0;
+
+slides.addEventListener("touchstart", e=>{
+startX = e.touches[0].clientX;
+});
+
+slides.addEventListener("touchend", e=>{
+let endX = e.changedTouches[0].clientX;
+
+if(startX - endX > 50){
+next();
+}
+
+if(endX - startX > 50){
+prev();
+}
+
+});
+
+/* CONFETTI */
+
+function celebrate(){
+
+var duration = 4000;
+var end = Date.now() + duration;
+
+(function frame() {
+confetti({
+particleCount:7,
+angle:60,
+spread:70,
+origin:{x:0}
+});
+
+confetti({
+particleCount:7,
+angle:120,
+spread:70,
+origin:{x:1}
+});
+
+if(Date.now() < end){
+requestAnimationFrame(frame);
+}
+
+}());
+
+}
+
+</script>
+
+</body>
+</html>
